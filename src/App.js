@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-
-export default App;
+import React from 'react'
+import {Route, Switch} from 'react-router'
+import HomePage from './pages/homepage/homepage.page'
+import loginPage from './pages/login/login.page'
+import PaymentPage from './pages/payment/payment.page'
+import ProductPage from './pages/product/product.page'
+import {connect} from 'react-redux'
+import SignupPage from './pages/signup/signup.page'
+import {PrivateRoute} from './component/privateroute/privateroute.component'
+import AdminLoginPage from './admin/adminlogin/adminlogin.page'
+import AdminDashboardPage from './admin/admin-dashboard/admindashboard.page'
+import AdminInventory from './admin/admin-inventory/admininventory.page'
+import AdminOrders from './admin/admin-assign-tasks/adminassigntasks.page'
+import {AdminRoute} from './component/admin-route/adminroute.component'
+class App extends React.Component{
+  render(){
+    const {currentUser} = this.props;
+    return(
+		<Switch>
+			<Route exact path="/" component={HomePage} />
+      <Route exact path="/product" component={ProductPage} />
+      <Route exact path="/login" component={loginPage} />
+      <Route exact path="/signup" component={SignupPage} />
+      <PrivateRoute exact path="/payment" auth={currentUser} component={PaymentPage} />
+      <Route exact path="/admin/login" component={AdminLoginPage} />
+      <AdminRoute exact path="/admin/dashboard" auth={currentUser && currentUser.user_type === 1} component={AdminDashboardPage} />
+      <AdminRoute exact path="/admin/inventory" auth={currentUser && currentUser.user_type === 1} component={AdminInventory} />
+      <AdminRoute exact path="/admin/orders" auth={currentUser && currentUser.user_type === 1} component={AdminOrders} />
+		</Switch>
+    )
+  }
+};
+const mapStateToProps = state=>({
+  currentUser : state.user.currentUser
+})
+export default connect(mapStateToProps)(App);
