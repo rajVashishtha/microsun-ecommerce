@@ -1,1 +1,1 @@
-export const BASE_URL = "https://microsun-ecommerce-backend.herokuapp.com";
+export const BASE_URL = "http://microsun-ecommerce-backend.herokuapp.com";
