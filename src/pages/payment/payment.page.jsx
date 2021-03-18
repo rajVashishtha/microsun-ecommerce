@@ -5,7 +5,6 @@ import one from '../../constants/1.svg';
 import { withRouter } from 'react-router'
 import { CloseOutlined } from '@material-ui/icons';
 import CartObjectCard from '../../component/cartobject/cartobject.component'
-import mastervisa from '../../constants/mastercard-visa.png'
 import { connect } from 'react-redux';
 import axios from 'axios'
 import moment from 'moment';

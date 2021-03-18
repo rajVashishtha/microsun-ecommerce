@@ -28,17 +28,17 @@ class ProductPage extends React.Component{
     componentDidMount(){
         console.log("working")
         axios.get(BASE_URL+"/allproducts").then(res=>{
-            console.log(res.data.message[0].products)
+            let temp = res.data.message.map(item=>item.products);
+            temp = [].concat(...temp);
             this.setState({
-                products:res.data.message[0].products
-            })
+                products:temp
+            });
         }).catch(err=>{
             console.log(err);
         })
     }
     handleProductChange = (event)=>{
         const {setCartItem} = this.props;
-        console.log(event.target.value)
         this.setState({price:event.target.value.price});
         setCartItem(event.target.value);
     }
