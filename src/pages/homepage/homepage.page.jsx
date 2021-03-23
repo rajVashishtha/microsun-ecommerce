@@ -35,7 +35,7 @@ class HomePage extends React.Component{
         <div>
             <CustomAppBar />
             <div style={{
-                position: "relative";
+                position: "relative"
             }} >
                 {/* <img src="https://picsum.photos/200/300" alt="Background" style={{
                     width:"100%",height:"auto"
