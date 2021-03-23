@@ -1,6 +1,5 @@
 import React from 'react';
 import CustomAppBar from '../../component/appbar/appbar.component';
-import "./homepage.style.scss";
 import {Grid, Typography, Button} from '@material-ui/core';
 import { withRouter } from 'react-router';
 import background from '../../constants/background.jpg';
@@ -35,7 +34,9 @@ class HomePage extends React.Component{
         return (
         <div>
             <CustomAppBar />
-            <div className="home_page_main_div" >
+            <div style={{
+                position: "relative";
+            }} >
                 {/* <img src="https://picsum.photos/200/300" alt="Background" style={{
                     width:"100%",height:"auto"
                 }}/> */}
