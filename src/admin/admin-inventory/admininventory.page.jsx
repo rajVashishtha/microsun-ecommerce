@@ -92,7 +92,7 @@ class AdminInventoryPage  extends React.Component{
         formdata.append("category_id",this.state.categoryName)
         formdata.append("name",this.state.productName);
         formdata.append("description",this.state.productDescription)
-        formdata.append("expirary",moment(this.state.productExpiry).format("YY-MM"))
+        formdata.append("price",this.state.productExpiry)
         formdata.append("photo",this.state.file);
         this.setState({
             submitting:true
@@ -237,7 +237,7 @@ class AdminInventoryPage  extends React.Component{
                                 <TextField required fullWidth={true} value={this.state.productDescription} onChange={this.handleChange} name="productDescription" type="text" label="Product Description" variant="outlined" />
                             </Grid>
                             <Grid item xs={6} style={{marginTop:"20px", marginLeft:"auto",marginRight:"auto"}}>
-                                <TextField required fullWidth={true} value={this.state.productExpiry} onChange={this.handleChange} name="productExpiry" type="number" label="Product Expiry in months" variant="outlined" />
+                                <TextField required fullWidth={true} value={this.state.productExpiry} onChange={this.handleChange} name="productExpiry" type="number" label="Product price" variant="outlined" />
                             </Grid>
                             <Grid item xs={6} style={{marginTop:"20px", marginLeft:"auto",marginRight:"auto"}}>
                                 <FormControl variant="outlined" >
