@@ -286,7 +286,7 @@ class PaymentPage extends React.Component{
                                     <Grid item xs={12} style={{  borderBottom:"1px solid #888888"}}>
                                         <Typography variant="h6" color="textPrimary">Subtotal : {this.state.subtotal}</Typography>
                                         <Typography style={{marginTop:"10px"}}>Tax : {this.state.tax}</Typography>
-                                        <Typography variant="h6" style={{marginTop:"20px"}}>Total : {this.state.subtotal+this.state.tax}</Typography>
+                                        <Typography variant="h6" style={{marginTop:"20px"}}>Total : {parseInt(this.state.subtotal)+parseInt(this.state.tax)}</Typography>
                                         <Button style={{marginTop:"30px",width:"99%"}} disabled={this.state.paying} color="primary" variant="outlined" type="submit">
                                         {
                                             this.state.paying?("Processing"):("Make Payment")
