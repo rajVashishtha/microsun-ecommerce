@@ -3,13 +3,12 @@ import React from "react";
 import {withRouter} from 'react-router-dom'
 import CustomAppBar from '../../component/appbar/appbar.component'
 import { BASE_URL } from "../../apis/apis";
-import {Grid, Typography,Paper, Modal, TextField,Input ,Button, FormControl, InputLabel, Select, MenuItem, FormControlLabel, CardMedia} from '@material-ui/core'
+import {Grid, Typography,Paper, Modal, TextField,Input ,Button, FormControl, InputLabel, Select, MenuItem, CardMedia} from '@material-ui/core'
 import Loader from 'react-loader-spinner'
 import { SpeedDial, SpeedDialAction, SpeedDialIcon } from "@material-ui/lab";
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import PlusOneIcon from '@material-ui/icons/PlusOne';
 import { connect } from "react-redux";
-import moment from 'moment'
 
 class AdminInventoryPage  extends React.Component{
     state={

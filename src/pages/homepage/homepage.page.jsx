@@ -115,6 +115,7 @@ class HomePage extends React.Component{
                                 <Grid container item xs={12} md={8} justify="center" alignItems="center" spacing={5} >
                                     <Grid item xs={12} md={8}>
                                         {
+                                            // eslint-disable-next-line
                                             item.category_id == 1?(
                                                 <Typography variant="h4">Try {item.product_name} Total Protection for free</Typography>
                                             ):(
@@ -124,6 +125,7 @@ class HomePage extends React.Component{
                                     </Grid>
                                     <Grid item xs={12} md={8}>
                                     {
+                                        // eslint-disable-next-line
                                         item.category_id == 1?(
                                             <Typography variant="h6">Defend yourself and your family against the latest malware, virus, ransomware and spyware threats with a full-featured 30 day trial of our flagship McAfee Total Protection.</Typography>
                                         ):(
@@ -133,9 +135,12 @@ class HomePage extends React.Component{
                                         
                                     </Grid>
                                     <Grid item xs={12} md={8}>
+                                        
                                         <Button color="primary" variant="contained" onClick={()=>{
                                             history.push("/product");
-                                        }}>{item.category_id == 1?"Get your free trail now":"Get now"}</Button>
+                                        }}>{
+                                        // eslint-disable-next-line
+                                        item.category_id == 1?"Get your free trail now":"Get now"}</Button>
                                     </Grid>
                                 </Grid>
                                 <Grid item xs={12} md={4}>
