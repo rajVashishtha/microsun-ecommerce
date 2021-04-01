@@ -82,7 +82,7 @@ class PaymentPage extends React.Component{
         this.setState({checked:!this.state.checked})
     }
     componentDidMount(){
-        const { currentUser,cart} = this.props;
+        const { cart} = this.props;
         console.log([cart]);
         if(cart)
         this.setState({cart:[cart],total:cart.price,subtotal:cart.price});

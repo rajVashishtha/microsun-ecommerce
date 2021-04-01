@@ -1,5 +1,5 @@
 import React from 'react'
-import {Accordion, AccordionDetails, AccordionSummary, Collapse, Grid, IconButton, Typography} from '@material-ui/core'
+import {Collapse, Grid, IconButton, Typography} from '@material-ui/core'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { ExpandLessOutlined } from '@material-ui/icons';
 

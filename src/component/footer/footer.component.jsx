@@ -1,5 +1,5 @@
 import React from 'react'
-import {Grid, List, ListItem, ListItemIcon, ListItemText, ListSubheader, Typography} from '@material-ui/core'
+import {Grid, List, ListItem, ListItemIcon, ListItemText, Typography} from '@material-ui/core'
 import { AddOutlined } from '@material-ui/icons';
 import twitter from '../../constants/twitter.png';
 import facebook from '../../constants/facebook.png';

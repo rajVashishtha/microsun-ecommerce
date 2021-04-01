@@ -1,15 +1,15 @@
 import { AppBar, IconButton, Toolbar, Typography,List,ListItem,ListItemText, Button,Menu,MenuItem ,Divider,ListItemIcon} from '@material-ui/core';
 import React from 'react';
-import {BookmarkBorderOutlined, CloseOutlined, ContactSupportOutlined, MenuOutlined, SecurityOutlined,MoneyOutlined} from '@material-ui/icons';
+import { CloseOutlined, MenuOutlined} from '@material-ui/icons';
 import { withStyles } from '@material-ui/core/styles';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer'
 import clsx from  'clsx';
-import HttpsIcon from '@material-ui/icons/Https';
-import BlurOnIcon from '@material-ui/icons/BlurOn';
 import {Link, withRouter} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setCurrentUser } from '../../redux/user/user.action';
+import { BASE_URL } from '../../apis/apis';
+import axios from 'axios'
 
 const myStyles = (theme) => ({
 root:{
@@ -68,14 +68,13 @@ toolbar: theme.mixins.toolbar,
 
 class CustomAppBar extends React.Component{
     state={
-        list:["Protection","Antivirus","VPN","About","Support","Investors" ],
-        links:[null,null,null,null,"/site-support",null],
-        listIcons:[<HttpsIcon />,<BlurOnIcon />,<SecurityOutlined />,<BookmarkBorderOutlined />,<ContactSupportOutlined />,<MoneyOutlined /> ],
+        list:[ ],
+        links:[],
+        listIcons:[],
         anchor:null,
         drawer:false
     }
     handleOpen = (event) => {
-        console.log("working")
         this.setState({anchor:(event.currentTarget)})
     };
     
@@ -90,6 +89,18 @@ class CustomAppBar extends React.Component{
     logout = ()=>{
         const {setCurrentUser} = this.props;
         setCurrentUser(null);
+    }
+    componentDidMount(){
+        axios.get(BASE_URL+"/category").then(res=>{
+            console.log(res);
+            let list = res.data.message.map(item=>item.name);
+            let links = res.data.message.map(item=>`/category/${item.id}`);
+            this.setState({
+                list,links
+            })
+        }).catch(err=>{
+            console.log("error ->",err);
+        })
     }
     render(){
         const {classes,theme, currentUser,history} = this.props;
