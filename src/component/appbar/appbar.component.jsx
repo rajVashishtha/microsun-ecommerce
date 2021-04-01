@@ -91,6 +91,7 @@ class CustomAppBar extends React.Component{
         setCurrentUser(null);
     }
     componentDidMount(){
+        console.log("url->",BASE_URL+"/category");
         axios.get(BASE_URL+"/category").then(res=>{
             console.log(res);
             let list = res.data.message.map(item=>item.name);
