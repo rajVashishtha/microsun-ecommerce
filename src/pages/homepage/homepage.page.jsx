@@ -23,7 +23,7 @@ class HomePage extends React.Component{
             let temp = res.data.message.map(item=>item.products);
             temp = [].concat(...temp);
             this.setState({
-                results:temp
+                results:temp.slice(0,6)
             })
         }).catch(err=>{
             console.log(err);

@@ -1,6 +1,6 @@
 import React from 'react'
 import CustomAppBar from '../../component/appbar/appbar.component'
-import {Button, FormControl, Grid,InputLabel,MenuItem,Select,Typography} from '@material-ui/core';
+import {Button, Grid,Typography} from '@material-ui/core';
 import s_1 from '../../constants/1.svg'
 import product_page_1 from '../../constants/product_page.webp'
 import p_p_2 from '../../constants/p_p_2.png'
@@ -35,13 +35,12 @@ class ProductPage extends React.Component{
             console.log(err);
         })
     }
-    handleProductChange = (event)=>{
-        const {setCartItem} = this.props;
-        this.setState({price:event.target.value.price});
-        setCartItem(event.target.value);
+    buyNow = ()=>{
+        const {setCartItem, history} = this.props;
+        setCartItem(this.state.product);
+        history.push("/payment");
     }
     render(){
-        const {history} = this.props;
         return(
             <div>
                 <CustomAppBar />
@@ -69,9 +68,7 @@ class ProductPage extends React.Component{
                                 <Typography variant="h3" color="textSecondary">${this.state.product ? this.state.product.price:0} | per month</Typography>
                             </Grid>
                             <Grid item xs={12} md={8}>
-                                <Button color="primary" style={{padding:"10px 30px"}} variant="contained" onClick={()=>{
-                                    history.push("/payment");
-                                }}>
+                                <Button color="primary" style={{padding:"10px 30px"}} variant="contained" onClick={this.buyNow}>
                                     Buy Now
                                 </Button>
                                 <Typography style={{marginTop:"5px"}} color="textSecondary">*See offer details below.</Typography>
@@ -83,7 +80,7 @@ class ProductPage extends React.Component{
                         </Grid>
                     </Grid>
                     <Grid container item xs={12} style={{marginTop:"50px"}}>
-                        <Grid container item xs={6} spacing={6} style={{paddingLeft:"140px"}}>
+                        <Grid container item xs={6} direction="column" spacing={6} style={{paddingLeft:"140px"}}>
                             <Grid item >
                                 <Typography variant="h4" color="textSecondary">
                                     Description

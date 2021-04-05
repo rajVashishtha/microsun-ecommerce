@@ -64,12 +64,13 @@ class CategorySpecificPage extends React.Component{
                                 item.products.map((obj,ind)=>(
                                     <Grid item key={`${index}-${ind}`} xs={12} sm={4}>
                                         <Paper elevation={2} style={{padding:"10px 15px"}} onClick={()=>{
-                                            history.push("/product")
+                                            history.push("/product/"+obj.product_id);
                                         }}>
-                                            <CardMedia src={obj.photo} />
+                                            <CardMedia image={obj.photo} style={{
+                                                    height: 0,
+                                                    paddingTop: '56.25%', // 16:9
+                                            }} title={obj.name} />
                                             <Typography variant='h6' color="textPrimary">{obj.name}</Typography>
-                                            <Typography color="textSecondary" style={{marginTop:"10px"}}>Description</Typography>
-                                            <Typography variant="subtitle1">{obj.description}</Typography>
                                         </Paper>
                                     </Grid>
                                 ))
