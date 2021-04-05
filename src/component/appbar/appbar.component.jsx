@@ -94,8 +94,12 @@ class CustomAppBar extends React.Component{
         console.log("url->",BASE_URL+"/category");
         axios.get(BASE_URL+"/category").then(res=>{
             console.log(res);
-            let list = res.data.message.map(item=>item.name);
-            let links = res.data.message.map(item=>`/category/${item.id}`);
+            let list = res.data.message.slice(0,4);
+            list = list.map(item=>item.name);
+            let links = res.data.message.slice(0,4);
+            links = links.map(item=>`/category/${item.id}`);
+            list.push("More");
+            links.push("/category");
             this.setState({
                 list,links
             })

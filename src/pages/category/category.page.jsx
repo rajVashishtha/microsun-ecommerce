@@ -68,12 +68,14 @@ class CategoryPage  extends React.Component{
                                 item.products.map((obj,ind)=>(
                                     <Grid item key={`${index}-${ind}`} xs={12} sm={4}>
                                         <Paper elevation={2} style={{padding:"10px 15px"}} onClick={()=>{
-                                            history.push("/product")
+                                            history.push("/product/"+obj.product_id);
                                         }}>
-                                            <CardMedia src={obj.image} />
-                                            <Typography variant='h6' color="textPrimary">{obj.product_name}</Typography>
-                                            <Typography color="textSecondary" style={{marginTop:"10px"}}>Description</Typography>
-                                            <Typography variant="subtitle1">{obj.product_description}</Typography>
+                                            <CardMedia image={obj.product_photo} title={obj.product_name} style={{
+                                                
+                                                    height: 0,
+                                                    paddingTop: '56.25%', // 16:9
+                                            }} />
+                                            <Typography variant='h6' color="textPrimary" style={{marginTop:"10px"}}>{obj.product_name}</Typography>
                                         </Paper>
                                     </Grid>
                                 ))
