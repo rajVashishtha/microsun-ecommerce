@@ -6,6 +6,7 @@ import facebook from '../../constants/facebook.png';
 import linkedin from '../../constants/linkedin.png';
 import youtube from '../../constants/youtube.png';
 import blog from '../../constants/blog.png';
+import { Link } from 'react-router-dom';
 
 class Footer extends React.Component{
     render(){
@@ -56,6 +57,12 @@ class Footer extends React.Component{
                                 6220 America Center Drive
                                 San Jose, CA 95002 USA
                             </Typography>
+                            <div style={{marginTop:"10px"}}>
+                                <Link to="/admin/login" style={{
+                                    textDecoration:"none",
+                                    color:"black"
+                                }}><Typography variant="h6">Admin</Typography></Link>
+                            </div>
                         </Grid>
                         <Grid item xs={12} md={6}>
                             <Typography variant="h6" align="center" color="textSecondary">Product</Typography>

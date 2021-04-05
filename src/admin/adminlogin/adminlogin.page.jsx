@@ -15,6 +15,14 @@ class AdminLoginPage extends React.Component{
         errorMessage:"Error Occured",
         loading:false
     }
+    componentDidMount(){
+        const {currentUser, history} = this.props;
+        console.log(currentUser);
+        // eslint-disable-next-line
+        if(currentUser.user_type == "1" || currentUser.user_type == true){
+            history.push("/admin/dashboard");
+        }
+    }
     handleChange = (event)=>{
         const {name, value} = event.target;
         this.setState({[name]:value});
@@ -95,8 +103,11 @@ class AdminLoginPage extends React.Component{
         )
     }
 }
+const mapStateToProps = (state)=>({
+    currentUser : state.user.currentUser
+})
 const mapDispatchToProps = dispatch =>({
     setCurrentUser : user => dispatch(setCurrentUser(user))
 })
 
-export default connect(null,mapDispatchToProps)(AdminLoginPage);
+export default connect(mapStateToProps,mapDispatchToProps)(AdminLoginPage);

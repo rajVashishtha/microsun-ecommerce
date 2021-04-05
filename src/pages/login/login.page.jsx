@@ -42,9 +42,11 @@ class LoginPage extends React.Component{
             console.log(res.data.message[0])
             this.toggleLoading();
             setCurrentUser(res.data.message[0]);
-            if(location.state.from === "/payment")
-            history.push("/payment")
-            history.push("/")
+            if(location.state && location.state.from){
+                history.push(location.state.from);
+            }else{
+                history.push("/");
+            }
         }).catch(error=>{
             this.toggleLoading();
             let message="";

@@ -10,6 +10,7 @@ import axios from 'axios'
 import moment from 'moment';
 import { BASE_URL } from '../../apis/apis';
 import { setCartItem } from '../../redux/cart/cart.action';
+import Footer from '../../component/footer/footer.component';
 
 
 class PaymentPage extends React.Component{
@@ -278,7 +279,7 @@ class PaymentPage extends React.Component{
                                 {
                                     this.state.cart.map((item,index)=>(
                                         <Grid item xs={12}>
-                                            <CartObjectCard name={item.product_name} price={item.price} expiry={item.expiry} details={item.product_description} />
+                                            <CartObjectCard name={item.name} price={item.price} expiry={item.expiry} details={item.description} />
                                         </Grid>
                                     
                                     ))
@@ -326,7 +327,7 @@ class PaymentPage extends React.Component{
                     </React.Fragment>
                     }
                 />
-                
+                <Footer />
             </div>
         )
     }
