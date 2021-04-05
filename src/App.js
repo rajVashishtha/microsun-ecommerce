@@ -20,7 +20,7 @@ class App extends React.Component{
     return(
 		<Switch>
 			<Route exact path="/" component={HomePage} />
-      <Route exact path="/product" component={ProductPage} />
+      <Route exact path="/product/:id" component={ProductPage} />
       <Route exact path="/login" component={loginPage} />
       <Route exact path="/signup" component={SignupPage} />
       <Route exact path="/category" component={CategoryPage} />

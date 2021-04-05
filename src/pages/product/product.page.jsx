@@ -22,17 +22,15 @@ import {setCartItem} from '../../redux/cart/cart.action'
 
 class ProductPage extends React.Component{
     state = {
-        products:[],
-        price:"24.99"
+        product:null,
     }
     componentDidMount(){
-        console.log("working")
-        axios.get(BASE_URL+"/allproducts").then(res=>{
-            let temp = res.data.message.map(item=>item.products);
-            temp = [].concat(...temp);
+        const {id} = this.props.match.params;
+        axios.get(BASE_URL+"/product/"+id).then(res=>{
+            console.log(res.data);
             this.setState({
-                products:temp
-            });
+                product:res.data.message[0]
+            })
         }).catch(err=>{
             console.log(err);
         })
@@ -48,42 +46,27 @@ class ProductPage extends React.Component{
             <div>
                 <CustomAppBar />
                 <div style={{marginTop:"20px"}}>
-                    <Grid container item xs={12}>
-                        <Grid item xs={12} md={6}>
-
+                    <Grid container item xs={12} direction="row">
+                        <Grid item xs={12} md={5} style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            overflow: "hidden",
+                            padding:"10px 10px"
+                        }}>
+                            <img src={this.state.product?this.state.product.photo:null} alt={this.state.product?this.state.product.name:""} style={{
+                                flexShrink: 0,
+                                minWidth: "100%",
+                                minHeight: "100%"
+                            }} />
                         </Grid>
-                        <Grid container item xs={12} md={6} spacing={3}>
+                        <Grid container item xs={12} md={6} spacing={2} style={{marginLeft:"100px"}}>
                             <Grid item xs={12} md={8}>
-                                <Typography variant="h4" color="textSecondary">McAfee® Total Protection</Typography>
-                                <Typography style={{marginTop:"20px"}} color="textSecondary" variant="h6" >Protection for today's security needs, so you can enjoy life online.
-                                    Includes premium antivirus, safe browsing.
-                                    With ID theft protection and secure VPN.**
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={12} md={8} >
-                            <FormControl variant="outlined" fullWidth>
-                                <InputLabel id="demo-simple-select-outlined-label">Product</InputLabel>
-                                <Select
-                                labelId="demo-simple-select-outlined-label"
-                                id="demo-simple-select-outlined"
-                                label="Product"
-                                onChange={this.handleProductChange}
-                                >
-                                <MenuItem value="">
-                                    <em>None</em>
-                                </MenuItem>
-                                {
-                                    this.state.products.map(item=>(
-                                        <MenuItem value={item}>
-                                            {item.product_name}
-                                        </MenuItem>
-                                    ))
-                                }
-                                </Select>
-                            </FormControl>
+                                <Typography variant="h5" color="textSecondary">{this.state.product? this.state.product.name:""}</Typography>
+                                
                             </Grid>
                             <Grid item xs={12} md={8}>
-                                <Typography variant="h3" color="textSecondary">${this.state.price} | per month</Typography>
+                                <Typography variant="h3" color="textSecondary">${this.state.product ? this.state.product.price:0} | per month</Typography>
                             </Grid>
                             <Grid item xs={12} md={8}>
                                 <Button color="primary" style={{padding:"10px 30px"}} variant="contained" onClick={()=>{
@@ -103,12 +86,12 @@ class ProductPage extends React.Component{
                         <Grid container item xs={6} spacing={6} style={{paddingLeft:"140px"}}>
                             <Grid item >
                                 <Typography variant="h4" color="textSecondary">
-                                    It’s more than just antivirus software—it’s peace of mind
+                                    Description
                                 </Typography>
                             </Grid>
                             <Grid item>
                                 <Typography variant="body1">
-                                    At McAfee, we protect what matters – you. We protect over 500 million devices with award-winning antivirus, but understand that you need a solution that protects your personal info, privacy, and helps you navigate safely online.
+                                    {this.state.product?this.state.product.description:"No Description"}
                                 </Typography>
                             </Grid>
                         </Grid>
