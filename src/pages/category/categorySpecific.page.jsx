@@ -5,6 +5,7 @@ import Loader from 'react-loader-spinner'
 import axios from 'axios'
 import { BASE_URL } from '../../apis/apis'
 import {Grid, Typography,Paper,CardMedia} from '@material-ui/core'
+import Footer from '../../component/footer/footer.component'
 
 class CategorySpecificPage extends React.Component{
     state={
@@ -80,6 +81,7 @@ class CategorySpecificPage extends React.Component{
                     ))
                 }
                 </Grid>
+                <Footer />
             </div>
         )
     }
