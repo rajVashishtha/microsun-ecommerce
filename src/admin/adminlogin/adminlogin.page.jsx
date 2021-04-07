@@ -19,7 +19,7 @@ class AdminLoginPage extends React.Component{
         const {currentUser, history} = this.props;
         console.log(currentUser);
         // eslint-disable-next-line
-        if(currentUser.user_type == "1" || currentUser.user_type == true){
+        if(currentUser && (currentUser.user_type == "1" || currentUser.user_type == true)){
             history.push("/admin/dashboard");
         }
     }
