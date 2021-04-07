@@ -1,11 +1,12 @@
 import axios from "axios";
 import React from "react";
-import {withRouter} from 'react-router-dom'
+import {withRouter,Link} from 'react-router-dom'
 import CustomAppBar from '../../component/appbar/appbar.component'
 import { BASE_URL } from "../../apis/apis";
 import {Grid, Typography,Paper,CardMedia} from '@material-ui/core'
 import Loader from 'react-loader-spinner'
 import { connect } from "react-redux";
+import Footer from "../../component/footer/footer.component";
 
 class CategoryPage  extends React.Component{
     state={
@@ -61,11 +62,11 @@ class CategoryPage  extends React.Component{
                     this.state.items.map((item,index)=>(
                         <Grid item xs={12} md={10} container key={index} spacing={2}>
                             <Grid item xs={12}>
-                                <Typography variant="h5" color="textSecondary" >{item.categorie_name}</Typography>
+                                <Link style={{textDecoration:"none"}} to={"/category/"+item.id}><Typography variant="h5" color="textSecondary" >{item.categorie_name}</Typography></Link>
                             </Grid>
                             <Grid item xs={12} container spacing={3}>
                             {
-                                item.products.map((obj,ind)=>(
+                                item.products.slice(0,2).map((obj,ind)=>(
                                     <Grid item key={`${index}-${ind}`} xs={12} sm={4}>
                                         <Paper elevation={2} style={{padding:"10px 15px"}} onClick={()=>{
                                             history.push("/product/"+obj.product_id);
@@ -80,11 +81,13 @@ class CategoryPage  extends React.Component{
                                     </Grid>
                                 ))
                             }
+                            
                             </Grid>
                         </Grid>
                     ))
                 }
-                </Grid>                
+                </Grid>   
+                <Footer />             
             </div>
         )
     }
