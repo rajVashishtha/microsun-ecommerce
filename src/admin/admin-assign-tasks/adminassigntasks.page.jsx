@@ -15,16 +15,10 @@ class AdminOrders extends React.Component{
         loading:true
     }
     componentDidMount(){
-        const {currentUser} = this.props;
-        axios.get(BASE_URL+"/orders",{
-            headers:{
-                'authorization':`${currentUser.token_type} ${currentUser.access_token}`
-            }
-        }).then(res=>{
-            console.log(res.data.data);
+        axios.get(BASE_URL+"/orders").then(res=>{
             this.setState({rows:res.data.data,loading:false});
         }).catch(err=>{
-            if(err.response.status === 401){
+            if(err.response && err.response.status === 401){
                 setCurrentUser(null);
             }
             console.log(err);
